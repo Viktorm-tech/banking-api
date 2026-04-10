@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: banking-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bankingdb
+    username: bankinguser
+    password: bankingpass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+limits:
+  check:
+    url: http://localhost:8081/limits/check
+
+logging:
+  level:
+    com.example.banking: DEBUG
+    org.springframework.web: INFO
