@@ -36,16 +36,6 @@ services:
     depends_on:
       - zookeeper
 
-  wiremock:
-    image: wiremock/wiremock:3.9.1
-    command: --port 8080 --verbose
-    ports:
-      - "8081:8080"
-    volumes:
-      - ./wiremock/mappings:/home/wiremock/mappings
-    environment:
-      WIREMOCK_OPTIONS: "--verbose"
-
   banking-api:
     build: .
     ports:
@@ -60,8 +50,6 @@ services:
       postgres:
         condition: service_healthy
       kafka:
-        condition: service_started
-      wiremock:
         condition: service_started
 
 volumes:

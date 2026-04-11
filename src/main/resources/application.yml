@@ -24,7 +24,7 @@ spring:
 
 limits:
   check:
-    url: http://localhost:8081/limits/check
+    url: ${LIMITS_CHECK_URL:http://localhost:8081/limits/check}
 
 logging:
   level:
