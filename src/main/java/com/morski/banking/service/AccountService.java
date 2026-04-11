@@ -4,7 +4,6 @@ import com.morski.banking.entity.Account;
 import com.morski.banking.entity.TransactionType;
 import com.morski.banking.exception.AccountNotFoundException;
 import com.morski.banking.exception.InsufficientBalanceException;
-import com.morski.banking.exception.LimitExceededException;
 import com.morski.banking.repository.AccountRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.UUID;
 
@@ -52,7 +52,7 @@ public class AccountService {
     public void deposit(UUID id, BigDecimal amount) {
         Account account = getAccount(id);
         account.setBalance(account.getBalance().add(amount));
-        account.setUpdatedAt(java.time.LocalDateTime.now());
+        account.setUpdatedAt(LocalDateTime.now());
         accountRepository.save(account);
         transactionService.recordTransaction(id, amount, TransactionType.DEPOSIT, null, "Deposit");
         log.info("Deposited {} to account {}", amount, id);
@@ -66,7 +66,7 @@ public class AccountService {
             throw new InsufficientBalanceException("Insufficient balance");
         }
         account.setBalance(account.getBalance().subtract(amount));
-        account.setUpdatedAt(java.time.LocalDateTime.now());
+        account.setUpdatedAt(LocalDateTime.now());
         accountRepository.save(account);
         transactionService.recordTransaction(id, amount, TransactionType.WITHDRAW, null, "Withdrawal");
         log.info("Withdrew {} from account {}", amount, id);
@@ -85,8 +85,8 @@ public class AccountService {
         }
         fromAccount.setBalance(fromAccount.getBalance().subtract(amount));
         toAccount.setBalance(toAccount.getBalance().add(amount));
-        fromAccount.setUpdatedAt(java.time.LocalDateTime.now());
-        toAccount.setUpdatedAt(java.time.LocalDateTime.now());
+        fromAccount.setUpdatedAt(LocalDateTime.now());
+        toAccount.setUpdatedAt(LocalDateTime.now());
         accountRepository.save(fromAccount);
         accountRepository.save(toAccount);
         transactionService.recordTransaction(fromId, amount, TransactionType.TRANSFER_SENT, toId, "Transfer to " + toId);
