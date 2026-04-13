@@ -45,7 +45,7 @@ services:
       SPRING_DATASOURCE_USERNAME: bankinguser
       SPRING_DATASOURCE_PASSWORD: bankingpass
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      LIMITS_CHECK_URL: http://wiremock:8080/limits/check
+      LIMITS_CHECK_URL: http://host.docker.internal:8081/limits/check
     depends_on:
       postgres:
         condition: service_healthy
