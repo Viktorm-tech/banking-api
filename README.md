@@ -174,7 +174,7 @@ Response `200 OK` with a paginated list:
 "timestamp": "2026-04-14T10:00:00"
 }
 ],
-"pageable": { ... },
+"pageable": { },
 "totalPages": 1,
 "totalElements": 1
 }
@@ -213,56 +213,6 @@ curl "http://localhost:8080/api/accounts/<id>/transactions?page=0&size=10"
 ## Running Integration Tests with WireMock
 
 The banking API expects an external service at `LIMITS_CHECK_URL`. For automated tests you can spin up a dedicated WireMock container and point the API to it.
-
-### Using a shared Docker network
-
-1. Create an external network:
-   ```bash
-   docker network create banking-test-network
-   ```
-
-2. Add the network to your main `docker-compose.yml`:
-   ```yaml
-   services:
-   banking-api:
-   networks:
-   - banking-test-network
-   networks:
-   banking-test-network:
-   external: true
-   ```
-
-3. Create a `docker-compose-tests.yml` for WireMock:
-   ```yaml
-   services:
-   wiremock:
-   image: wiremock/wiremock:3.9.1
-   command: --port 8080 --verbose
-   networks:
-   - banking-test-network
-   networks:
-   banking-test-network:
-   external: true
-   ```
-
-4. Start both stacks:
-   ```bash
-   docker-compose up -d
-   docker-compose -f docker-compose-tests.yml up -d
-   ```
-
-Now the banking API can reach WireMock at `http://wiremock:8080/limits/check`.  
-You can dynamically define stubs via WireMock’s REST API or by placing JSON files in a volume mounted to `/home/wiremock/mappings`.
-
-## Stopping the Services
-
-```bash
-# Stop the main stack
-docker-compose down -v
-
-# Stop WireMock (if started manually)
-docker stop wiremock && docker rm wiremock
-```
 
 ## Logging
 
