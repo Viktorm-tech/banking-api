@@ -29,4 +29,5 @@ limits:
 logging:
   level:
     com.example.banking: DEBUG
-    org.springframework.web: INFO
+    org.springframework.web: DEBUG
+    org.hibernate: DEBUG

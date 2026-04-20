@@ -186,7 +186,7 @@ Response `200 OK` with a paginated list:
 # Create account
 curl -X POST http://localhost:8080/api/accounts \
 -H "Content-Type: application/json" \
--d '{"customerId":"user1","initialBalance":5000,"currency":"USD"}'
+-d "{\"customerId\":\"user1\",\"initialBalance\":5000,\"currency\":\"USD\"}"
 
 # Get account (replace <id>)
 curl http://localhost:8080/api/accounts/<id>
@@ -194,17 +194,17 @@ curl http://localhost:8080/api/accounts/<id>
 # Deposit
 curl -X POST http://localhost:8080/api/accounts/<id>/deposit \
 -H "Content-Type: application/json" \
--d '{"amount":1000}'
+-d "{"amount":1000}"
 
 # Withdraw (limit check passes if amount < 10000)
 curl -X POST http://localhost:8080/api/accounts/<id>/withdraw \
 -H "Content-Type: application/json" \
--d '{"amount":500}'
+-d "{"amount":500}"
 
 # Transfer
 curl -X POST http://localhost:8080/api/accounts/<from>/transfer \
 -H "Content-Type: application/json" \
--d '{"toAccountId":"<to>","amount":300}'
+-d "{"toAccountId":"<to>","amount":300}"
 
 # Transaction history
 curl "http://localhost:8080/api/accounts/<id>/transactions?page=0&size=10"
