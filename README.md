@@ -1,6 +1,6 @@
 # Banking API
 
-A simplified banking API built with **Spring Boot 4.0**, **Java 25**, **PostgreSQL**, and **Kafka**.  
+A simplified banking API built with **Spring Boot 4.0**, **Java 21**, **PostgreSQL**, and **Kafka**.  
 The service supports account management, deposits, withdrawals (with limit checking via an external mock service), transfers, and paginated transaction history.
 
 ## Features
