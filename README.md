@@ -214,6 +214,19 @@ curl "http://localhost:8080/api/accounts/<id>/transactions?page=0&size=10"
 
 The banking API expects an external service at `LIMITS_CHECK_URL`. For automated tests you can spin up a dedicated WireMock container and point the API to it.
 
+## Database Schema
+
+For a detailed description of tables and fields, see [SCHEMA.md](SCHEMA.md).
+
+## Kafka Events
+
+The service publishes events to the Kafka topic `account-events` for important state changes.
+
+- **ACCOUNT_CREATED** – published when a new account is created.
+- **TRANSFER_COMPLETED** – published after a successful transfer between accounts.
+
+Events are sent asynchronously and do not block the main transaction. See [KAFKA.md](KAFKA.md) for the complete event schema and consumer guidelines.
+
 ## Logging
 
 Logs are printed to the console. To increase verbosity, set:
