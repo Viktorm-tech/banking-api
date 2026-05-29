@@ -24,7 +24,7 @@ The service supports account management, deposits, withdrawals (with limit check
 
 - Docker Engine 20.10+
 - Docker Compose 2.0+
-- (Optional) Java 25 / Maven for local development
+- (Optional) Java 21 / Maven for local development
 
 ## Quick Start
 
@@ -111,7 +111,16 @@ Response `201 Created`:
 
 **GET** `/api/accounts/{id}`
 
-Response `200 OK` (same as above).  
+Response `200 OK`:
+```json
+{
+"id": "550e8400-e29b-41d4-a716-446655440000",
+"customerId": "cust123",
+"balance": 1000.00,
+"currency": "USD",
+"status": "ACTIVE"
+}
+```  
 `404 Not Found` if the account does not exist.
 
 ### 3. Deposit funds
@@ -240,7 +249,7 @@ in the environment or inside `application.yml`.
 ## Technologies
 
 - Spring Boot 4.0
-- Java 25
+- Java 21
 - Spring Data JPA + Hibernate
 - PostgreSQL 15
 - Apache Kafka
