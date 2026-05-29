@@ -111,7 +111,16 @@ Response `201 Created`:
 
 **GET** `/api/accounts/{id}`
 
-Response `200 OK` (same as above).  
+Response `200 OK`:
+```json
+{
+"id": "550e8400-e29b-41d4-a716-446655440000",
+"customerId": "cust123",
+"balance": 1000.00,
+"currency": "USD",
+"status": "ACTIVE"
+}
+```  
 `404 Not Found` if the account does not exist.
 
 ### 3. Deposit funds
