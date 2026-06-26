@@ -31,7 +31,7 @@ The service supports account management, deposits, withdrawals (with limit check
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-repo/banking-api.git
+git clone https://github.com/Viktorm-tech/banking-api.git
 cd banking-api
 ```
 
