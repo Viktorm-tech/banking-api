@@ -173,19 +173,43 @@ Response `200 OK` with a paginated list:
 
 ```json
 {
-"content": [
-{
-"id": "tx1",
-"amount": 1000.00,
-"type": "DEPOSIT",
-"relatedAccountId": null,
-"description": "Initial deposit",
-"timestamp": "2026-04-14T10:00:00"
-}
-],
-"pageable": { },
-"totalPages": 1,
-"totalElements": 1
+  "content": [
+    {
+      "id": "tx1",
+      "amount": 1000.00,
+      "type": "DEPOSIT",
+      "relatedAccountId": null,
+      "description": "Initial deposit",
+      "timestamp": "2026-04-14T10:00:00"
+    }
+  ],
+  "pageable":{
+    "offset":0,
+    "pageNumber":0,
+    "pageSize":10,
+    "paged":true,
+    "sort":
+    {
+      "empty":true,
+      "sorted":false,
+      "unsorted":true
+    },
+    "unpaged":false
+  },
+  "empty":false,
+  "first":true,
+  "last":true,
+  "number":0,
+  "numberOfElements":10,
+  "size":10,
+  "sort":
+  {
+    "empty":true,
+    "sorted":false,
+    "unsorted":true
+  },
+  "totalElements":10,
+  "totalPages":1
 }
 ```
 
